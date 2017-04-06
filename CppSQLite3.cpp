@@ -1146,6 +1146,21 @@ void CppSQLite3Statement::reset()
 }
 
 
+void CppSQLite3Statement::clear_bindings()
+{
+    if (mpVM)
+    {
+        int nRet = sqlite3_clear_bindings(mpVM);
+
+        if (nRet != SQLITE_OK)
+        {
+            const char* szError = sqlite3_errmsg(mpDB);
+            throw CppSQLite3Exception(nRet, (char*)szError, DONT_DELETE_MSG);
+        }
+    }
+}
+
+
 void CppSQLite3Statement::finalize()
 {
     if (mpVM)

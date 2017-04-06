@@ -270,6 +270,8 @@ public:
 
     void reset();
 
+    void clear_bindings();
+
     void finalize();
 
 private:
